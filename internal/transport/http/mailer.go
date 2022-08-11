@@ -3,11 +3,11 @@ package http
 import (
 	"context"
 	"encoding/json"
-	"log"
 	"net/http"
 
 	"github.com/anfelo/gomailer/internal/mailer"
 	"github.com/go-playground/validator"
+	log "github.com/sirupsen/logrus"
 )
 
 // MailerService - main interface for the mailer service
@@ -59,6 +59,14 @@ func (h *Handler) SendEmail(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func mapSendEmailRequestToEmailMessage(s SendEmailRequest) mailer.EmailMessage {
-	return mailer.EmailMessage{}
+func mapSendEmailRequestToEmailMessage(r SendEmailRequest) mailer.EmailMessage {
+	return mailer.EmailMessage{
+		From:             r.From,
+		FromName:         r.FromName,
+		To:               r.To,
+		ToName:           r.ToName,
+		Subject:          r.Subject,
+		PlainTextContent: r.PlainTextContent,
+		HtmlContent:      r.HtmlContent,
+	}
 }

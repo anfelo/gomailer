@@ -2,11 +2,11 @@ package provider
 
 import (
 	"context"
-	"fmt"
-	"log"
+	"errors"
 
 	"github.com/anfelo/gomailer/internal/mailer"
 	"github.com/sendgrid/sendgrid-go/helpers/mail"
+	log "github.com/sirupsen/logrus"
 )
 
 // SendEmail - Sends a single email with sendgrid
@@ -22,9 +22,12 @@ func (p *Provider) SendEmail(ctx context.Context, emailData mailer.EmailMessage)
 	if err != nil {
 		log.Println(err)
 		return err
-	} else {
-		fmt.Println(response.StatusCode)
-		fmt.Println(response.Headers)
-		return nil
 	}
+
+	if response.StatusCode == 400 {
+		log.Println(response.Body)
+		return errors.New("bad request")
+	}
+
+	return nil
 }

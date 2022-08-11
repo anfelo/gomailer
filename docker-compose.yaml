@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    container_name: "gomailer-api"
+    environment:
+      SENDGRID_API_KEY: "${SENDGRID_API_KEY}"
+      CLIENT_API_KEY: "${CLIENT_API_KEY}"
+    ports:
+      - "8080:8080"
