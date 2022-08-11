@@ -12,6 +12,5 @@ type Provider struct {
 
 // NewProvider - returns a new provider with sendgrid client
 func NewProvider() *Provider {
-	//sendgrid.NewSendClient(os.Getenv("SENDGRID_API_KEY"))
-	return &Provider{Client: sendgrid.NewSendClient("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")}
+	return &Provider{Client: sendgrid.NewSendClient(os.Getenv("SENDGRID_API_KEY"))}
 }
