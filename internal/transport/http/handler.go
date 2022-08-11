@@ -19,8 +19,8 @@ type Handler struct {
 	Server  *http.Server
 }
 
-// NewHandler - returns a new handler with the router initialized
-// and the service configured
+// NewHandler - returns a new handler with the router initialized and the
+// service configured
 func NewHandler(service MailerService) *Handler {
 	h := &Handler{
 		Service: service,
@@ -44,11 +44,10 @@ func (h *Handler) mapRoutes() {
 		fmt.Fprintf(w, "I am alive")
 	})
 
-	// TODO: Add Mailer Routes
+	h.Router.HandleFunc("/api/v1/sendmail", h.SendEmail).Methods("POST")
 }
 
-// Serve - starts the server to listen for requests
-// handles gracefully shut downs
+// Serve - starts the server to listen for requests handles gracefully shut downs
 func (h *Handler) Serve() error {
 	go func() {
 		if err := h.Server.ListenAndServe(); err != nil {

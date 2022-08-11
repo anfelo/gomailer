@@ -5,9 +5,8 @@ import (
 	"fmt"
 )
 
-// EmailMessage - a representation of the email
-// structure for our service this will contain
-// all the fields needed to send the email
+// EmailMessage - a representation of the email structure for our service this
+// will contain all the fields needed to send the email
 type EmailMessage struct {
 	From             string
 	FromName         string
@@ -18,14 +17,13 @@ type EmailMessage struct {
 	HtmlContent      string
 }
 
-// Provider - the main interface that describes how to
-// interact with the email provider
+// Provider - the main interface that describes how to interact with the email
+// provider
 type Provider interface {
 	SendEmail(context.Context, EmailMessage) error
 }
 
-// Service - is the struct on which all our logic
-// will be built on top of
+// Service - is the struct on which all our logic will be built on top of
 type Service struct {
 	Provider Provider
 }
