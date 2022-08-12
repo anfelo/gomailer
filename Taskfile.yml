@@ -1,5 +1,7 @@
 version: "3"
 
+dotenv: ['.env']
+
 tasks:
   build:
     cmds:
@@ -16,3 +18,7 @@ tasks:
   run:
     cmds:
       - docker-compose up --build
+
+  dev:
+    cmds:
+      - export SENDGRID_API_KEY="$SENDGRID_API_KEY" && reflex -s go run cmd/server/main.go
