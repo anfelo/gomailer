@@ -21,4 +21,4 @@ tasks:
 
   dev:
     cmds:
-      - export SENDGRID_API_KEY="$SENDGRID_API_KEY" && reflex -s go run cmd/server/main.go
+      - export SENDGRID_API_KEY="$SENDGRID_API_KEY" && export CLIENT_API_KEY="$CLIENT_API_KEY" && reflex -s go run cmd/server/main.go

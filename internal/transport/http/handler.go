@@ -29,6 +29,7 @@ func NewHandler(service MailerService) *Handler {
 	h.Router.Use(JSONMiddleware)
 	h.Router.Use(LoggingMiddleware)
 	h.Router.Use(TimeoutMiddleware)
+	h.Router.Use(ApiKeyMiddleware)
 	h.mapRoutes()
 
 	h.Server = &http.Server{
