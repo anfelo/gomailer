@@ -57,11 +57,11 @@ func ApiKeyMiddleware(next http.Handler) http.Handler {
 // CorsMiddleware - add cors headers
 func CorsMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		log.Info(r)
 		if r.Method == http.MethodOptions {
 			w.Header().Set("Access-Control-Allow-Origin", "*")
 			w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS")
-			w.Header().Set("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Api-Key")
-			w.Header().Set("Content-Type", "application/json")
+			w.Header().Set("Access-Control-Allow-Headers", "X-Requested-With")
 			w.WriteHeader(http.StatusOK)
 			return
 		}
