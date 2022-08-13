@@ -62,7 +62,6 @@ func CorsMiddleware(next http.Handler) http.Handler {
 			w.Header().Set("Access-Control-Allow-Origin", "*")
 			w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS")
 			w.Header().Set("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Api-Key")
-			w.WriteHeader(http.StatusOK)
 			return
 		}
 
