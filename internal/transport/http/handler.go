@@ -30,6 +30,7 @@ func NewHandler(service MailerService) *Handler {
 	h.Router.Use(LoggingMiddleware)
 	h.Router.Use(TimeoutMiddleware)
 	h.Router.Use(ApiKeyMiddleware)
+	h.Router.Use(mux.CORSMethodMiddleware(h.Router))
 	h.mapRoutes()
 
 	h.Server = &http.Server{
