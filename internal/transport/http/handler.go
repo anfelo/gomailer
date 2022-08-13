@@ -26,11 +26,11 @@ func NewHandler(service MailerService) *Handler {
 		Service: service,
 	}
 	h.Router = mux.NewRouter()
+	h.Router.Use(CorsMiddleware)
 	h.Router.Use(JSONMiddleware)
 	h.Router.Use(LoggingMiddleware)
 	h.Router.Use(TimeoutMiddleware)
 	h.Router.Use(ApiKeyMiddleware)
-	h.Router.Use(CorsMiddleware)
 	h.mapRoutes()
 
 	h.Server = &http.Server{
