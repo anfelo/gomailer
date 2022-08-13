@@ -30,7 +30,7 @@ func NewHandler(service MailerService) *Handler {
 	h.Router.Use(LoggingMiddleware)
 	h.Router.Use(TimeoutMiddleware)
 	h.Router.Use(ApiKeyMiddleware)
-	h.Router.Use(mux.CORSMethodMiddleware(h.Router))
+	h.Router.Use(CorsMiddleware)
 	h.mapRoutes()
 
 	h.Server = &http.Server{
@@ -46,7 +46,7 @@ func (h *Handler) mapRoutes() {
 		fmt.Fprintf(w, "I am alive")
 	})
 
-	h.Router.HandleFunc("/api/v1/sendmail", h.SendEmail).Methods("POST", "OPTIONS")
+	h.Router.HandleFunc("/api/v1/sendmail", h.SendEmail).Methods(http.MethodPost)
 }
 
 // Serve - starts the server to listen for requests handles gracefully shut downs
