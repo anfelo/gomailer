@@ -46,7 +46,7 @@ func (h *Handler) mapRoutes() {
 		fmt.Fprintf(w, "I am alive")
 	})
 
-	h.Router.HandleFunc("/api/v1/sendmail", h.SendEmail).Methods("POST")
+	h.Router.HandleFunc("/api/v1/sendmail", h.SendEmail).Methods("POST", "OPTIONS")
 }
 
 // Serve - starts the server to listen for requests handles gracefully shut downs
