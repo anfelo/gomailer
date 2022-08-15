@@ -17,7 +17,7 @@ type MailerService interface {
 
 // Response - simple response struct
 type Response struct {
-	Message string
+	Message string `json:"message"`
 }
 
 // SendEmailRequest - representation of the email request structure
@@ -34,7 +34,7 @@ type SendEmailRequest struct {
 // SendEmail - handles the request to send an email
 func (h *Handler) SendEmail(w http.ResponseWriter, r *http.Request) {
 	var emailRequest SendEmailRequest
-	log.Info(r)
+
 	if err := json.NewDecoder(r.Body).Decode(&emailRequest); err != nil {
 		log.Error(err)
 		http.Error(w, "not a valid email payload", http.StatusBadRequest)
