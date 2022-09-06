@@ -42,7 +42,7 @@ func NewHandler(service MailerService) *Handler {
 }
 
 func (h *Handler) mapRoutes() {
-	h.Router.HandleFunc("/alive", func(w http.ResponseWriter, r *http.Request) {
+	h.Router.HandleFunc("/alive", func(w http.ResponseWriter, _ *http.Request) {
 		fmt.Fprintf(w, "I am alive")
 	})
 
